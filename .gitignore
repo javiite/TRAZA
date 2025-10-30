@@ -5,18 +5,23 @@ Thumbs.db
 .idea/
 
 # Laravel backend
-backend/vendor/
-backend/node_modules/
-backend/public/storage
-backend/storage/*.key
-backend/storage/logs/
-backend/bootstrap/cache/
-backend/.env
-backend/.env.*
-backend/.phpunit.result.cache
-backend/composer.lock
+/backend/vendor/
+/backend/node_modules/
+/backend/public/hot
+/backend/public/storage
+/backend/storage/*.key
+/backend/storage/app/public
+/backend/storage/framework/*
+/backend/storage/logs/*
+/backend/.env
+/backend/.phpunit.result.cache
+/backend/Homestead.json
+/backend/Homestead.yaml
+/backend/npm-debug.log
+/backend/yarn-error.log
 
-# Frontend (cuando lo agregues)
-frontend/node_modules/
-frontend/.vite/
-*.log
+# Frontend 
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.vite/
+/frontend/.env
