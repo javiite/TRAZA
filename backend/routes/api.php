@@ -21,4 +21,26 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Nuevo: listado de equipos
     Route::get('/equipment', [EquipmentController::class, 'index']);
+    // Crear (solo Admin/Gerencia/Administracion)
+    Route::post('/equipment', [EquipmentController::class, 'store']);
+       //  ->middleware('role:Admin|Gerencia|Administracion'); autenticacion de usuarios con roles 
+
+    Route::put('/equipment/{equipment}', [EquipmentController::class, 'update']);
+     // ->middleware('role:Admin|Gerencia|Administracion'); autenticacion de usuarios con roles
+     
+    Route::delete('/equipment/{equipment}', [\App\Http\Controllers\EquipmentController::class, 'destroy']);
+
+    // ->middleware('role:Admin|Gerencia|Administracion');
+     // 📂 Papelera
+    Route::get('/equipment/trash', [EquipmentController::class, 'trash']);            // listar papelera
+    Route::patch('/equipment/{id}/restore', [EquipmentController::class, 'restore']); // restaurar
+    Route::delete('/equipment/{id}/force', [EquipmentController::class, 'forceDelete']); // borrar definitivo
+
+   Route::get('/equipment/{id}', [EquipmentController::class, 'show']); // detalle
+       // >middleware('role:Admin|Gerencia|Administracion|ChoferTecnico')
+// Nota: lectura para cualquier usuario autenticado (sin middleware de rol extra)
+    
+
+
+
 });

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+
 
 class AuthController extends Controller
 {
-    // Login con email/password → regresa token
+    // POST /api/login
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -20,7 +21,9 @@ class AuthController extends Controller
             return response()->json(['message' => 'Credenciales inválidas'], 401);
         }
 
-        $request->user()->tokens()->delete(); // opcional: un token activo por usuario
+        // Opcional: un solo token activo por usuario
+        $request->user()->tokens()->delete();
+
         $token = $request->user()->createToken('spa')->plainTextToken;
 
         return response()->json([
@@ -29,15 +32,10 @@ class AuthController extends Controller
         ]);
     }
 
-    // Cierra sesión (revoca el token actual)
+    // POST /api/logout (requiere token)
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()?->delete();
         return response()->json(['message' => 'Sesión cerrada']);
     }
-    public function me(Request $request)
-{
-    return response()->json(['data' => $request->user()]);
-}
-
 }

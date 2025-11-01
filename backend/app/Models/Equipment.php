@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Equipment extends Model
 {
     // Si no pones $table, Eloquent infiere 'equipment' desde el nombre del modelo,
     // pero lo declaramos explícito por claridad:
+    use SoftDeletes;
     protected $table = 'equipment';
 
     // Campos que se pueden asignar masivamente (create/update desde arrays)
